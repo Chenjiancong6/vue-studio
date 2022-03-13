@@ -9,6 +9,7 @@
         "prettier": "prettier --write ."
     },
     "dependencies": {
+        "axios": "^0.26.1",
         "core-js": "^3.6.5",
         "element-plus": "^2.0.6",
         "vue": "^3.0.0",

@@ -4,21 +4,23 @@ import router from "./router";
 import store from "./store";
 import ElementPlus from 'element-plus'; // 全局引入
 import 'element-plus/dist/index.css'; // element样式
+import 'normalize.css';  // 全局规范化css 样式
+import './assets/css/index.less';
 
 import CRequest from './network';
 
-console.log(process.env.VUE_APP_BASE_URL)
+// console.log(process.env.VUE_APP_BASE_URL)
 CRequest.request({
     url: '/home/multidata',
     methods: "GET",
     interceptors: {
         requestInterceptor: (config: any) => {
-            console.log('单独请求的config')
+            // console.log('单独请求的config')
             // config.headers['token'] = '123'
             return config
         },
         responseInterceptor: (res: any) => {
-            console.log('单独响应的response')
+            // console.log('单独响应的response')
             return res
         }
     }

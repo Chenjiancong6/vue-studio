@@ -28,7 +28,7 @@ export default defineComponent({
         // loginAction该函数，可以被父组件通过ref的方式调用
         const loginAction = () => {
             // 通过校验后才会执行
-            formRef.value?.validate((valid) => {
+            formRef.value?.validate((valid: boolean) => {
                 if (valid) {
                     console.log("手机真正执行登录逻辑");
                 }

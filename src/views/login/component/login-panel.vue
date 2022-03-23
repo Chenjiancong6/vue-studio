@@ -26,8 +26,7 @@
             <el-link type="primary">忘记密码</el-link>
         </div>
         <el-button type="primary" class="login-btn" @click="handleLoginClick"
-      >立即登录</el-button
-    >
+      >立即登录</el-button>
     </div>
 </template>
 
@@ -48,16 +47,19 @@ export default defineComponent({
         // 通过ref 获取组件内部事件
         const accountRef = ref<InstanceType<typeof LoginAccount>>();
         const phoneRef = ref<InstanceType<typeof LoginPhone>>();
+        const currentTab = ref("account");
         const handleLoginClick = () => {
-            accountRef.value?.loginAction();
-            phoneRef.value?.loginAction();
+            // 传递记住密码的参数
+            accountRef.value?.loginAction(isKeepPassword.value);
+            // phoneRef.value?.loginAction();
         };
 
         return {
             isKeepPassword,
             accountRef,
             phoneRef,
-            handleLoginClick
+            handleLoginClick,
+            currentTab
         };
     }
 });

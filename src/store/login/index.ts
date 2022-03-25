@@ -6,6 +6,7 @@ import { Module } from 'vuex'
 import { ILoginState, IAccount } from "./type"
 import Api from "./api"
 import localCache from '@/utils/cache'
+import router from '@/router'
 
 // 两个参数，一个当前模块state的，一个根的state
 const LoginModule: Module<ILoginState, any> = {
@@ -50,8 +51,24 @@ const LoginModule: Module<ILoginState, any> = {
             commit('changeUserMenus', userMenus)
             localCache.setCache('userMenus', userMenus)
 
+            //登录成功后定位到首页
+            router.push("/main")
+        },
 
-
+        // 为防止vuex刷新后数据丢失的问题
+        loadLocalLogin({ commit }) {
+            const token = localCache.getCache("token")
+            if (token) {
+                commit("changeToken", token)
+            }
+            const userInfo = localCache.getCache("userInfo")
+            if (userInfo) {
+                commit("changeUserInfo", userInfo)
+            }
+            const userMenus = localCache.getCache("userMenus")
+            if (userMenus) {
+                commit("changeUserMenus", userMenus)
+            }
         }
     }
 }

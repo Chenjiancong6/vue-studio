@@ -13,10 +13,11 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from "vue";
+import { useStore } from "vuex";
 import { rulesAccount } from "./config";
 import { ElForm } from "element-plus";
 import localCache from "@/utils/cache";
-import { useStore } from "vuex";
+
 export default defineComponent({
     setup() {
         // 使用vuex
@@ -41,11 +42,8 @@ export default defineComponent({
                         localCache.deleteCache("name");
                         localCache.deleteCache("password");
                     }
-
-                    // 通过校验后，进行接口登录
-                    // store.dispatch("login/accountLoginAction", { ...account });
-                    // 2.开始进行登录验证
-                    store.dispatch("login/accountLoginAction", { ...account });
+                    //2. 通过校验后，开始进行登录验证
+                    store.dispatch("accountLoginAction", { ...account });
                 }
             });
         };

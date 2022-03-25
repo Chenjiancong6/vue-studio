@@ -15,5 +15,9 @@ const store = createStore({
         Login
     }
 })
+export function setupStore() {
+    store.dispatch('loadLocalLogin')
+}
+
 
 export default store

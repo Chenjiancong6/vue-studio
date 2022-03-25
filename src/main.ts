@@ -6,6 +6,7 @@ import ElementPlus from 'element-plus'; // 全局引入
 import 'element-plus/dist/index.css'; // element样式
 import 'normalize.css';  // 全局规范化css 样式
 import './assets/css/index.less';
+import { setupStore } from './store'
 
 import Request from './network';
 
@@ -36,4 +37,5 @@ const app = createApp(App);
 app.use(store);
 app.use(router);
 app.use(ElementPlus);
+setupStore()
 app.mount("#app");

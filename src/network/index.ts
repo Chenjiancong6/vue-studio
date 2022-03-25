@@ -4,18 +4,19 @@
  */
 import Crequest from "./request";
 const TIME_OUT = 1000;
+import localCache from '@/utils/cache'
 
-const CRequest = new Crequest({
+const Request = new Crequest({
     baseURL: process.env.VUE_APP_BASE_URL,
     timeout: TIME_OUT,
     interceptors: {
         requestInterceptor: (config: any) => {
             // token拦截
-            // let token = '';
-            // if (token) {
-            //     config.headers.Authorization = `Bearer ${token}`
-            // }
-            console.log('请求成功的拦截')
+            let token = localCache.getCache("token") ?? '';
+            if (token) {
+                config.headers.Authorization = `Bearer ${token}`
+            }
+            // console.log('请求成功的拦截')
             return config;
         },
         requestInterceptorCatch: (err) => {
@@ -33,4 +34,4 @@ const CRequest = new Crequest({
     }
 })
 
-export default CRequest;
+export default Request;

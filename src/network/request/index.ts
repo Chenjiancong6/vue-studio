@@ -40,23 +40,23 @@ class Crequest {
                     background: 'rgba(0, 0, 0, 0.5)'
                 })
             }
-            console.log('所有的实例都有的拦截器: 请求成功拦截');
+            // console.log('所有的实例都有的拦截器: 请求成功拦截');
             return config;
         }, (err) => {
-            console.log('所有的实例都有的拦截器: 请求失败拦截')
+            // console.log('所有的实例都有的拦截器: 请求失败拦截')
             return err;
         });
         // 响应拦截器
         this.instance.interceptors.response.use((res) => {
-            console.log(res, res.data, "request 方法");
+            // console.log(res, res.data, "request 方法");
             // 将loading移除
             this.loading?.close()
             const data = res.data;
 
             if (data.returnCode === '-1001') {
-                console.log('请求失败~, 错误信息')
+                console.error('请求失败~, 错误信息')
             } else {
-                console.log('所有的实例都有的拦截器: 响应成功拦截');
+                // console.log('所有的实例都有的拦截器: 响应成功拦截');
                 return data
             }
         }, (err) => {
@@ -65,15 +65,15 @@ class Crequest {
 
             //判断不同的HttpErrorCode显示不同的错误信息
             if (err.response.status === 404) {
-                console.log('404的错误~')
+                console.error('404的错误~')
             }
-            console.log('所有的实例都有的拦截器: 响应失败拦截')
+            // console.log('所有的实例都有的拦截器: 响应失败拦截')
             return err;
         })
     }
 
     // request 方法
-    request(config: any) {
+    request<T>(config: CRequestConfig<T>): Promise<T> {
         return new Promise((resolve, reject) => {
             // 把请求拦截器放到 this.instance.request(config)中处理触发拦截
             if (config.interceptors?.requestInterceptor) {
@@ -85,7 +85,7 @@ class Crequest {
                 this.showLoading = config.showLoading
             }
 
-            this.instance.request(config).then((res) => {
+            this.instance.request<any, T>(config).then((res) => {
                 // 响应拦截器
                 if (config.interceptors?.responseInterceptor) {
                     res = config.interceptors.responseInterceptor(res)
@@ -105,17 +105,17 @@ class Crequest {
     }
 
     // 也可以使用get,post等方法直接调用
-    get(config: any) {
-        return this.request({ ...config, methods: 'GET' })
+    get<T>(config: CRequestConfig<T>): Promise<T> {
+        return this.request<T>({ ...config, method: 'GET' })
     }
-    post(config: any) {
-        return this.request({ ...config, methods: 'POST' })
+    post<T>(config: CRequestConfig<T>): Promise<T> {
+        return this.request({ ...config, method: 'POST' })
     }
-    delete(config: any) {
-        return this.request({ ...config, methods: 'DELETE' })
+    delete<T>(config: CRequestConfig<T>): Promise<T> {
+        return this.request({ ...config, method: 'DELETE' })
     }
-    patch(config: any) {
-        return this.request({ ...config, methods: 'PATCH' })
+    patch<T>(config: CRequestConfig<T>): Promise<T> {
+        return this.request({ ...config, method: 'PATCH' })
     }
 }
 export default Crequest;

@@ -1,8 +1,8 @@
 <template>
     <div class="login-panel">
         <h2 class="title">vue-studio后台管理系统</h2>
-        <el-tabs type="border-card" class="demo-tabs" stretch>
-            <el-tab-pane >
+        <el-tabs type="border-card" class="demo-tabs" stretch v-model="currentTab">
+            <el-tab-pane name="account">
                 <template #label>
                     <span class="custom-tabs-label">
                     <el-icon><avatar /></el-icon>
@@ -11,7 +11,7 @@
                 </template>
                 <login-account ref="accountRef" />
             </el-tab-pane>
-            <el-tab-pane>
+            <el-tab-pane name="phone">
                 <template #label>
                     <span class="custom-tabs-label">
                     <el-icon><Cellphone /></el-icon>
@@ -47,11 +47,19 @@ export default defineComponent({
         // 通过ref 获取组件内部事件
         const accountRef = ref<InstanceType<typeof LoginAccount>>();
         const phoneRef = ref<InstanceType<typeof LoginPhone>>();
+        // 区分是账号登录还是手机登录
         const currentTab = ref("account");
+
         const handleLoginClick = () => {
-            // 传递记住密码的参数
-            accountRef.value?.loginAction(isKeepPassword.value);
-            // phoneRef.value?.loginAction();
+            if (currentTab.value == "account") {
+                // 账号登录
+                // 传递记住密码的参数
+                accountRef.value?.loginAction(isKeepPassword.value);
+                console.log("账号登录");
+            } else {
+                // 手机登录
+                console.log("手机登录");
+            }
         };
 
         return {

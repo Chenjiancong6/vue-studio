@@ -1,5 +1,7 @@
 import { createStore } from "vuex"
 
+import Login from "./login"
+
 const store = createStore({
     state: () => {
         return {
@@ -8,7 +10,10 @@ const store = createStore({
     },
     mutations: {},
     getters: {},
-    actions: {}
+    actions: {},
+    modules: {
+        Login
+    }
 })
 
 export default store

@@ -16,8 +16,12 @@ import { defineComponent, reactive, ref } from "vue";
 import { rulesAccount } from "./config";
 import { ElForm } from "element-plus";
 import localCache from "@/utils/cache";
+import { useStore } from "vuex";
 export default defineComponent({
     setup() {
+        // 使用vuex
+        const store = useStore();
+
         const account = reactive({
             name: localCache.getCache("name") ?? "",
             password: localCache.getCache("password") ?? ""
@@ -29,7 +33,6 @@ export default defineComponent({
             // 通过校验后才会执行
             formRef.value?.validate((valid: boolean) => {
                 if (valid) {
-                    // console.log(isKeepPassword, "真正执行登录逻辑");
                     // 是否记住密码
                     if (isKeepPassword) {
                         localCache.setCache("name", account.name);
@@ -38,6 +41,11 @@ export default defineComponent({
                         localCache.deleteCache("name");
                         localCache.deleteCache("password");
                     }
+
+                    // 通过校验后，进行接口登录
+                    // store.dispatch("login/accountLoginAction", { ...account });
+                    // 2.开始进行登录验证
+                    store.dispatch("login/accountLoginAction", { ...account });
                 }
             });
         };

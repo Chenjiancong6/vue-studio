@@ -48,6 +48,8 @@ const LoginModule: Module<ILoginState, any> = {
             // 3.请求用户菜单
             const userMenusResult = await Api.requestUserMenusByRoleId(data.role.id)
             const userMenus = userMenusResult.data
+            console.log(userMenus, "userMenus");
+
             commit('changeUserMenus', userMenus)
             localCache.setCache('userMenus', userMenus)
 

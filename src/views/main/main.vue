@@ -1,23 +1,21 @@
 <template>
-  <div class="main">
-    <el-container class="main-content">
-        <el-aside width="200px">Aside</el-aside>
-        <el-container class="page">
-            <el-header class="page-header">
-                <div>Header</div>
-            </el-header>
-            <el-main class="page-content">
-                <div class="page-info">
-                    Main
-                </div>
-            </el-main>
+    <div class="main">
+        <el-container class="main-content">
+            <el-aside width="200px">Aside</el-aside>
+            <el-container class="page">
+                <el-header class="page-header">
+                    <div>Header</div>
+                </el-header>
+                <el-main class="page-content">
+                    <div class="page-info">Main</div>
+                </el-main>
+            </el-container>
         </el-container>
-    </el-container>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
     setup() {

@@ -26,10 +26,10 @@ npm run lint
 
 ### Customize configuration
 
-
 # vue-studio
 
-# 封装了一个网络请求CRequest方法，有两种使用方式
+# 封装了一个网络请求 CRequest 方法，有两种使用方式
+
 ```
 // 使用方式1:
 CRequest.request({

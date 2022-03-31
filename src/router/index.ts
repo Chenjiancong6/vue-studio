@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
-import localCache from "@/utils/cache"
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import localCache from '@/utils/cache';
 // import Home from "../views/Home.vue"
 
 const routes: RouteRecordRaw[] = [
@@ -9,29 +9,31 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: '/main',
-        component: () => import(/*webpackChunkName: "main" */'@/views/main/main.vue')
+        component: () =>
+            import(/*webpackChunkName: "main" */ '@/views/main/main.vue')
     },
 
     {
-        path: "/login",
-        name: "login",
-        component: () => import(/*webpackChunkName: "login" */ "@/views/login/index.vue")
-    },
-]
+        path: '/login',
+        name: 'login',
+        component: () =>
+            import(/*webpackChunkName: "login" */ '@/views/login/index.vue')
+    }
+];
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
-})
+});
 
 // 进行页面导航守卫，当没有token的时候，跳转到登录页面
 router.beforeEach((to) => {
     if (to.path !== '/login') {
-        const token = localCache.getCache("token")
+        const token = localCache.getCache('token');
         if (!token) {
-            return "/login"
+            return '/login';
         }
     }
-})
+});
 
-export default router
+export default router;

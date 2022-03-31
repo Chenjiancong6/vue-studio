@@ -1,12 +1,17 @@
 <template>
     <div class="login-panel">
         <h2 class="title">vue-studio后台管理系统</h2>
-        <el-tabs type="border-card" class="demo-tabs" stretch v-model="currentTab">
+        <el-tabs
+            type="border-card"
+            class="demo-tabs"
+            stretch
+            v-model="currentTab"
+        >
             <el-tab-pane name="account">
                 <template #label>
                     <span class="custom-tabs-label">
-                    <el-icon><avatar /></el-icon>
-                    <span>账号登录</span>
+                        <el-icon><avatar /></el-icon>
+                        <span>账号登录</span>
                     </span>
                 </template>
                 <login-account ref="accountRef" />
@@ -14,8 +19,8 @@
             <el-tab-pane name="phone">
                 <template #label>
                     <span class="custom-tabs-label">
-                    <el-icon><Cellphone /></el-icon>
-                    <span>手机登录</span>
+                        <el-icon><Cellphone /></el-icon>
+                        <span>手机登录</span>
                     </span>
                 </template>
                 <login-phone ref="phoneRef"></login-phone>
@@ -26,15 +31,16 @@
             <el-link type="primary">忘记密码</el-link>
         </div>
         <el-button type="primary" class="login-btn" @click="handleLoginClick"
-      >立即登录</el-button>
+            >立即登录</el-button
+        >
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { Avatar, Cellphone } from "@element-plus/icons-vue";
-import LoginAccount from "./login-account.vue";
-import LoginPhone from "./login-phone.vue";
+import { defineComponent, ref } from 'vue';
+import { Avatar, Cellphone } from '@element-plus/icons-vue';
+import LoginAccount from './login-account.vue';
+import LoginPhone from './login-phone.vue';
 export default defineComponent({
     components: {
         Avatar,
@@ -48,17 +54,17 @@ export default defineComponent({
         const accountRef = ref<InstanceType<typeof LoginAccount>>();
         const phoneRef = ref<InstanceType<typeof LoginPhone>>();
         // 区分是账号登录还是手机登录
-        const currentTab = ref("account");
+        const currentTab = ref('account');
 
         const handleLoginClick = () => {
-            if (currentTab.value == "account") {
+            if (currentTab.value == 'account') {
                 // 账号登录
                 // 传递记住密码的参数
                 accountRef.value?.loginAction(isKeepPassword.value);
-                console.log("账号登录");
+                console.log('账号登录');
             } else {
                 // 手机登录
-                console.log("手机登录");
+                console.log('手机登录');
             }
         };
 

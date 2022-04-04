@@ -18,6 +18,11 @@ const routes: RouteRecordRaw[] = [
         name: 'login',
         component: () =>
             import(/*webpackChunkName: "login" */ '@/views/login/index.vue')
+    },
+    {
+        path: '/:pathMatch(.*)*',  // 当页面路径不存在时，跳转到当前页面
+        name: 'notFound',
+        component: () => import('@/views/not-found/not-found.vue')
     }
 ];
 

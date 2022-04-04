@@ -1,18 +1,19 @@
 <template>
   <div class="main">
-    <el-container class="main-content">
-        <el-aside :width="isCollapse ? '80px':'200px'">
-            <nav-menu :collapse="isCollapse"></nav-menu>
-        </el-aside>
-        <el-container class="page">
-            <el-header class="page-header">
-                <nav-header @foldChange='foldChange'></nav-header>
-            </el-header>
-            <el-main class="page-content">
-                <div class="page-info">
-                    Main
-                </div>
-            </el-main>
+        <el-container class="main-content">
+            <el-aside :width="isCollapse ? '80px':'200px'">
+                <nav-menu :collapse="isCollapse"></nav-menu>
+            </el-aside>
+            <el-container class="page">
+                <el-header class="page-header">
+                    <nav-header @foldChange='foldChange'></nav-header>
+                </el-header>
+                <el-main class="page-content">
+                    <div class="page-info">
+                        <router-view></router-view>
+                    </div>
+                </el-main>
+            </el-container>
         </el-container>
     </div>
 </template>

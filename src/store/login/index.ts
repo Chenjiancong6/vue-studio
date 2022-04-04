@@ -8,6 +8,9 @@ import Api from './api';
 import localCache from '@/utils/cache';
 import router from '@/router';
 
+// 动态路由的实现
+import { mapMenusToRoutes } from '@/utils/map-menuRoutes'
+
 // 两个参数，一个当前模块state的，一个根的state
 const LoginModule: Module<ILoginState, any> = {
     // namespaced: true,
@@ -27,13 +30,19 @@ const LoginModule: Module<ILoginState, any> = {
             state.userInfo = userInfo;
         },
         changeUserMenus(state, userMenus: any) {
-<<<<<<< HEAD
             state.userMenus = userMenus
-            console.log(state.userMenus, "state.userMenus");
+            console.log(userMenus, "userMenus");
 
-=======
-            state.userMenus = userMenus;
->>>>>>> a65131ecb6b9be34d63cfd2332da3df88010d5f6
+            //动态路由的实现，调用方法
+            const routes = mapMenusToRoutes(userMenus)
+
+            /**
+             * 将获取的动态路由进行注册 ！！！
+             */
+            routes.forEach(route => {
+                router.addRoute('main', route)
+            })
+
         }
     },
     actions: {
@@ -47,15 +56,9 @@ const LoginModule: Module<ILoginState, any> = {
             localCache.setCache('token', token); // 把token本地缓存
 
             //2. 查询用户信息
-<<<<<<< HEAD
             const { data } = await Api.requestUserInfoById(id)
             commit("changeUserInfo", data)
             localCache.setCache("userInfo", data)
-=======
-            const { data } = await Api.requestUserInfoById(id);
-            commit('changeUserInfo', data);
-            localCache.setCache('userInfo', data);
->>>>>>> a65131ecb6b9be34d63cfd2332da3df88010d5f6
 
             // 3.请求用户菜单
             const userMenusResult = await Api.requestUserMenusByRoleId(

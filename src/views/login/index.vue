@@ -1,12 +1,12 @@
 <template>
-  <div class="login">
-      <login-panel></login-panel>
-  </div>
+    <div class="login">
+        <login-panel></login-panel>
+    </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import LoginPanel from "./component/login-panel.vue";
+import { defineComponent } from 'vue';
+import LoginPanel from './component/login-panel.vue';
 export default defineComponent({
     components: {
         LoginPanel
@@ -21,6 +21,6 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url("../../assets/img/login-bg.svg");
+    background: url('../../assets/img/login-bg.svg');
 }
 </style>

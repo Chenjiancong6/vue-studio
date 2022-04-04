@@ -2,9 +2,9 @@
  * new 实例化一个axios网络请求
  * 通过暴露一个Crequest类，不同的接口请求可以进行多个实例化
  */
-import Crequest from "./request";
+import Crequest from './request';
 const TIME_OUT = 1000;
-import localCache from '@/utils/cache'
+import localCache from '@/utils/cache';
 
 const Request = new Crequest({
     baseURL: process.env.VUE_APP_BASE_URL,
@@ -12,9 +12,9 @@ const Request = new Crequest({
     interceptors: {
         requestInterceptor: (config: any) => {
             // token拦截
-            let token = localCache.getCache("token") ?? '';
+            const token = localCache.getCache('token') ?? '';
             if (token) {
-                config.headers.Authorization = `Bearer ${token}`
+                config.headers.Authorization = `Bearer ${token}`;
             }
             // console.log('请求成功的拦截')
             return config;
@@ -32,6 +32,6 @@ const Request = new Crequest({
             return err;
         }
     }
-})
+});
 
 export default Request;

@@ -24,7 +24,7 @@ export const rulesAccount = {
             trigger: 'blur'
         }
     ]
-}
+};
 
 // 手机验证规则
 
@@ -53,4 +53,4 @@ export const rulesPhone = {
             trigger: 'blur'
         }
     ]
-}
+};

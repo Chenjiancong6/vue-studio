@@ -14,14 +14,13 @@
                 </div>
             </el-main>
         </el-container>
-    </el-container>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import navMenu from "@/components/nav-menu";
-import navHeader from "@/components/nav-header";
+import { defineComponent, ref } from 'vue';
+import navMenu from '@/components/nav-menu';
+import navHeader from '@/components/nav-header';
 
 export default defineComponent({
     components: {

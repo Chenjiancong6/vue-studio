@@ -1,22 +1,27 @@
 <template>
     <div class="login-account">
-        <el-form label-width="60px" :rules="rulesAccount" :model="account" ref="formRef">
+        <el-form
+            label-width="60px"
+            :rules="rulesAccount"
+            :model="account"
+            ref="formRef"
+        >
             <el-form-item label="账号" prop="name">
                 <el-input v-model="account.name" />
             </el-form-item>
             <el-form-item label="密码" prop="password">
-                <el-input v-model="account.password" show-password/>
+                <el-input v-model="account.password" show-password />
             </el-form-item>
         </el-form>
-  </div>
+    </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
-import { useStore } from "vuex";
-import { rulesAccount } from "./config";
-import { ElForm } from "element-plus";
-import localCache from "@/utils/cache";
+import { defineComponent, reactive, ref } from 'vue';
+import { useStore } from 'vuex';
+import { rulesAccount } from './config';
+import { ElForm } from 'element-plus';
+import localCache from '@/utils/cache';
 
 export default defineComponent({
     setup() {
@@ -24,8 +29,8 @@ export default defineComponent({
         const store = useStore();
 
         const account = reactive({
-            name: localCache.getCache("name") ?? "",
-            password: localCache.getCache("password") ?? ""
+            name: localCache.getCache('name') ?? '',
+            password: localCache.getCache('password') ?? ''
         });
 
         const formRef = ref<InstanceType<typeof ElForm>>();
@@ -36,14 +41,14 @@ export default defineComponent({
                 if (valid) {
                     // 是否记住密码
                     if (isKeepPassword) {
-                        localCache.setCache("name", account.name);
-                        localCache.setCache("password", account.password);
+                        localCache.setCache('name', account.name);
+                        localCache.setCache('password', account.password);
                     } else {
-                        localCache.deleteCache("name");
-                        localCache.deleteCache("password");
+                        localCache.deleteCache('name');
+                        localCache.deleteCache('password');
                     }
                     //2. 通过校验后，开始进行登录验证
-                    store.dispatch("accountLoginAction", { ...account });
+                    store.dispatch('accountLoginAction', { ...account });
                 }
             });
         };
@@ -58,5 +63,4 @@ export default defineComponent({
 });
 </script>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

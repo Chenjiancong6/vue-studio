@@ -28,6 +28,8 @@ const LoginModule: Module<ILoginState, any> = {
         },
         changeUserMenus(state, userMenus: any) {
             state.userMenus = userMenus
+            console.log(state.userMenus, "state.userMenus");
+
         }
     },
     actions: {
@@ -41,7 +43,7 @@ const LoginModule: Module<ILoginState, any> = {
             localCache.setCache('token', token) // 把token本地缓存
 
             //2. 查询用户信息
-            let { data } = await Api.requestUserInfoById(id)
+            const { data } = await Api.requestUserInfoById(id)
             commit("changeUserInfo", data)
             localCache.setCache("userInfo", data)
 

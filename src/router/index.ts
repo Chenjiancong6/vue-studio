@@ -1,4 +1,6 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+// import { createRouter, createWebHistory, RouteRecordRaw, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 import localCache from '@/utils/cache';
 // import Home from "../views/Home.vue"
 
@@ -27,8 +29,9 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
-    routes
+    // history: createWebHistory(process.env.BASE_URL),
+    routes,
+    history: createWebHashHistory(),
 });
 
 // 进行页面导航守卫，当没有token的时候，跳转到登录页面

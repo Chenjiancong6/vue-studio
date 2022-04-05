@@ -52,7 +52,7 @@ export default defineComponent({
         const isKeepPassword = ref(true);
         // 通过ref 获取组件内部事件
         const accountRef = ref<InstanceType<typeof LoginAccount>>();
-        const phoneRef = ref<InstanceType<typeof LoginPhone>>();
+        // const phoneRef = ref<InstanceType<typeof LoginPhone>>();
         // 区分是账号登录还是手机登录
         const currentTab = ref('account');
 
@@ -71,7 +71,7 @@ export default defineComponent({
         return {
             isKeepPassword,
             accountRef,
-            phoneRef,
+            // phoneRef,
             handleLoginClick,
             currentTab
         };

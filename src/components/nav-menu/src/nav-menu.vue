@@ -9,6 +9,7 @@
             class="el-menu-vertical"
             text-color="#b7bdc3"
             :collapse="collapse"
+            background-color="#0c2135"
             active-text-color="#0a60bd"
             >
             <div v-for="item in userMenus" :key="item.id">
@@ -17,6 +18,7 @@
                     <el-sub-menu :index="item.id + ''">
                         <template #title>
                             <i v-if="item.icon" :class="item.icon"></i>
+                            <!-- <el-icon><location /></el-icon> -->
                             <span>{{item.name}}</span>
                         </template>
                         <!--二级菜单-->
@@ -53,7 +55,7 @@
 
                 <!--只有一级的菜单，不能展开子菜单的菜单-->
                 <template v-else-if="item.type === 2">
-                     <el-menu-item :index="item.id + ''"  @click="handleMenuItemClick(item)">
+                     <el-menu-item :index="item.id + ''">
                         <i v-if="item.icon" :class="item.icon"></i>
                         <span>{{ item.name }}</span>
                     </el-menu-item>
@@ -65,10 +67,14 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-// import { useStore } from "@/store";
-import { useStore } from 'vuex';
+import { useStore } from '@/store';
+// import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import { Location } from '@element-plus/icons-vue';
 export default defineComponent({
+    // components: {
+    //     Location
+    // },
     props: {
         collapse: {
             type: Boolean,
@@ -78,7 +84,7 @@ export default defineComponent({
     setup() {
         // 计算属性获取vuex中的菜单列表
         const store = useStore();
-        const userMenus = computed(() => store.state.Login.userMenus);
+        const userMenus = computed(() => store.state.login.userMenus);
 
         /**
          * 点击菜单跳转路由
@@ -103,7 +109,7 @@ export default defineComponent({
 <style scoped lang='less'>
 .nav-menu {
     height: 100%;
-    // background-color: #001529;
+    background-color: #001529;
     .menu-logo {
         display: flex;
         height: 28px;
@@ -146,8 +152,8 @@ export default defineComponent({
     }
 
     .el-menu-item.is-active {
-        // color: #fff !important;
-        // background-color: #0a60bd !important;
+        color: #fff !important;
+        background-color: #0a60bd !important;
     }
 }
 

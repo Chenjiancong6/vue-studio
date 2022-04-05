@@ -39,7 +39,7 @@ const LoginModule: Module<ILoginState, any> = {
             /**
              * 将获取的动态路由进行注册 ！！！
              */
-            routes.forEach(route => {
+            routes.forEach((route) => {
                 router.addRoute('main', route)
             })
 

@@ -11,6 +11,7 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: '/main',
+        name: 'main',  // name一定要写，不然router.addRoute('main', route)不起作用！！
         component: () =>
             import(/*webpackChunkName: "main" */ '@/views/main/main.vue')
     },
